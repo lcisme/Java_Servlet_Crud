@@ -15,7 +15,7 @@
 </head>
 <body>
 
-<h1 style="text-align: center; color: Red; text-decoration: none"><a href=user/createUser.jsp>Create</a></h1>
+<h1 style="text-align: center; color: Red; text-decoration: none"><a href=user/createOrUpdate.jsp>Create</a></h1>
 <h1>List User</h1>
 <jsp:useBean id="listUser" type="java.util.List" scope="request"/>
 <table class="table">
@@ -37,10 +37,24 @@
                 <td>${user.name}</td>
                 <td><c:out value="${user.age}"/></td>
                 <td>${user.address}</td>
+
                 <td>
-                    <a href="${pageContext.request.contextPath}/userServlet?check=editUser&id=${user.id}">Edit</a>
-                    <a href="${pageContext.request.contextPath}/userServlet?check=deleteUser&id=${user.id}">Delete</a>
+                    <form action="userServlet" method="get">
+                        <input type="hidden" name="userId" value="${user.id}">
+                        <input type="hidden" name="userName" value="${user.name}">
+                        <input type="hidden" name="userAge" value="${user.age}">
+                        <input type="hidden" name="userAddress" value="${user.address}">
+                        <input type="submit" value="Edit">
+                    </form>
+<%--                    <form action="userServlet" method="post">--%>
+<%--                        <input type="hidden" name="userId" value="${user.id}">--%>
+<%--                        <input type="hidden" name="userId" value="delete">--%>
+<%--                        <input type="submit" value="Delete">--%>
+<%--                    </form>--%>
+                    </form>
+
                 </td>
+
             </tr>
         </c:forEach>
     </c:when>

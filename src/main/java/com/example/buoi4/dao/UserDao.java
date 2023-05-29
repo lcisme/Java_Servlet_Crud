@@ -62,10 +62,11 @@ public class UserDao {
         }
         return userEntity;
     }
-    public void deleteUser(Integer id){
+    public void deleteUser(int id){
         try {
             tran.begin();
-            em.remove(id);
+            UserEntity user = em.find(UserEntity.class,id);
+            em.remove(user);
             tran.commit();
 
         } catch (Exception ex){
