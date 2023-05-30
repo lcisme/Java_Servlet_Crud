@@ -18,20 +18,28 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    if (Objects.isNull(req.getParameter("userId"))){
-        req.setAttribute("id","");
-        req.setAttribute("name","");
-        req.setAttribute("age","");
-        req.setAttribute("address","");
-        req.getRequestDispatcher("user/createOrUpdate.jsp").forward(req,resp);
-    }
-    else {
-        req.setAttribute("id",req.getParameter("userId"));
-        req.setAttribute("name",req.getParameter("userName"));
-        req.setAttribute("age",req.getParameter("userAge"));
-        req.setAttribute("address",req.getParameter("userAddress"));
-        req.getRequestDispatcher("user/createOrUpdate.jsp").forward(req,resp);
-    }
+        if(!Objects.isNull(req.getParameter("delete"))){
+            userDao.deleteUser(Integer.parseInt(req.getParameter("userId")));
+            List<UserEntity> listUser = userDao.getAllUser();
+            req.setAttribute("listUser",listUser);
+            req.getRequestDispatcher("user/listUser.jsp").forward(req,resp);
+        }else {
+            if (Objects.isNull(req.getParameter("userId"))){
+                req.setAttribute("id","");
+                req.setAttribute("name","");
+                req.setAttribute("age","");
+                req.setAttribute("address","");
+                req.getRequestDispatcher("user/createOrUpdate.jsp").forward(req,resp);
+            }
+            else {
+                req.setAttribute("id",req.getParameter("userId"));
+                req.setAttribute("name",req.getParameter("userName"));
+                req.setAttribute("age",req.getParameter("userAge"));
+                req.setAttribute("address",req.getParameter("userAddress"));
+                req.getRequestDispatcher("user/createOrUpdate.jsp").forward(req,resp);
+            }
+        }
+
     }
 
     @Override
@@ -48,12 +56,7 @@ public class UserServlet extends HttpServlet {
             if (req.getParameter("userId").equals("")){
                 userEntity = new UserEntity(name,age,address);
                 userDao.insertUser(userEntity);
-            }
-//            else if ( req.getParameter("userId").equals("delete")){
-//                Integer id = Integer.parseInt(req.getParameter("userId"));
-//                userDao.deleteUser(id);
-//            }
-            else {
+            }else {
                 Integer id = Integer.parseInt(req.getParameter("userId"));
                 userEntity = new UserEntity(id,name,age,address);
                 userDao.updateUser(userEntity);

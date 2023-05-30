@@ -1,5 +1,6 @@
 <%@ page import="javax.swing.text.html.parser.Entity" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="a" uri="WEB-INFO/tld/myCustomTag.tld" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,15 +34,19 @@
 <jsp:setProperty name="userBean" property="name" value="T2108E 2"/>
 <jsp:setProperty name="userBean" property="age" value="22" />
 
-        <jsp:forward page="testinclude.jsp">
-            <jsp:param name="name" value="value form index"/>
-        </jsp:forward>
+<%--        <jsp:forward page="testinclude.jsp">--%>
+<%--            <jsp:param name="name" value="value form index"/>--%>
+<%--        </jsp:forward>--%>
 
 <h1>Tổng: ${"2" + 2}</h1>
 <h1>String: ${"Hello".concat(" T2108E") }</h1>
 <h1>param value: ${param.name}</h1>
 <h1>check param value: ${empty param.name}</h1>
 <br/>
+
+<%-- buoi8--%>
+<a:myFirstCustomTag name="${userBean.name}"/>
+<%----%>
 <a href="hello-servlet">Hello Servlet</a><br/>
 <a href="">Demo JSP-Scope</a><br/>
 <a href="demo.jsp?name=T2108E&age=20">Demo</a>
