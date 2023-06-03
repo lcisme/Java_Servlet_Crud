@@ -47,8 +47,6 @@ public class UserServlet extends HttpServlet {
         try {
             UserEntity userEntity;
             List<UserEntity> listUser;
-//            String check = req.getParameter("check");
-//            String id = req.getParameter("userId");
             String name = req.getParameter("userName");
             Integer age = Integer.parseInt(req.getParameter("userAge"));
             String address = req.getParameter("userAddress");

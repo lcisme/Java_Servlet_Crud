@@ -18,11 +18,11 @@ public class LocaleServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
+            if (req.authenticate(resp)){
             String lang = req.getParameter("lang");
             if (lang == null){
                 lang = "vi_VN";
             }
-            {
                 String[] lc = lang.split("_"); // ?lang= vi_VN
                 String language = lc[0];
                 String country = lc[1];
@@ -52,6 +52,9 @@ public class LocaleServlet extends HttpServlet {
 
                 req.getRequestDispatcher("demoLocale.jsp").forward(req,resp);
 
+            }
+            else {
+                System.out.println("request not authentication");
             }
         }catch (Exception ex){
             System.out.println(ex.getMessage());
