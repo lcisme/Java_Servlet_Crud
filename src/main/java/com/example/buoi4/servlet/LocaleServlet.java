@@ -1,6 +1,9 @@
 package com.example.buoi4.servlet;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.HttpConstraint;
+import javax.servlet.annotation.HttpMethodConstraint;
+import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +17,11 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 @WebServlet("/localeServlet")
+/*@ServletSecurity(@HttpConstraint(rolesAllowed = {"admin", "user"})*/
+@ServletSecurity(httpMethodConstraints = {
+        @HttpMethodConstraint(value = "POST", rolesAllowed = "admin"),
+        @HttpMethodConstraint(value = "GET", rolesAllowed = "user")
+})
 public class LocaleServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

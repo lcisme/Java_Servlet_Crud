@@ -17,33 +17,35 @@
         <servlet-name>demo</servlet-name>
         <url-pattern>/demo</url-pattern>
     </servlet-mapping>
+<!--    thay the dong 21 trong localeServlet -->
 <!--    // user-->
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>demo security</web-resource-name>
-            <url-pattern>/localeServlet</url-pattern>
-            <http-method>GET</http-method>
-            <http-method>POST</http-method>
-        </web-resource-collection>
-        <auth-constraint>
-            <role-name>admin</role-name>
-            <role-name>user</role-name>
-        </auth-constraint>
-    </security-constraint>
+<!--    <security-constraint>-->
+<!--        <web-resource-collection>-->
+<!--            <web-resource-name>demo security</web-resource-name>-->
+<!--            <url-pattern>/localeServlet</url-pattern>-->
+<!--            <http-method>GET</http-method>-->
+<!--            <http-method>POST</http-method>-->
+<!--        </web-resource-collection>-->
+<!--        <auth-constraint>-->
+<!--            <role-name>admin</role-name>-->
+<!--            <role-name>user</role-name>-->
+<!--        </auth-constraint>-->
+<!--    </security-constraint>-->
 
+<!-- thay the dong 21 trong localeServlet-->
 <!--admin-->
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>demo security</web-resource-name>
-            <url-pattern>/adminServlet</url-pattern>
-            <http-method>GET</http-method>
-            <http-method>POST</http-method>
-        </web-resource-collection>
-        <auth-constraint>
-            <role-name>admin</role-name>
+<!--    <security-constraint>-->
+<!--        <web-resource-collection>-->
+<!--            <web-resource-name>demo security</web-resource-name>-->
+<!--            <url-pattern>/adminServlet</url-pattern>-->
+<!--            <http-method>GET</http-method>-->
+<!--            <http-method>POST</http-method>-->
+<!--        </web-resource-collection>-->
+<!--        <auth-constraint>-->
+<!--            <role-name>admin</role-name>-->
 
-        </auth-constraint>
-    </security-constraint>
+<!--        </auth-constraint>-->
+<!--    </security-constraint>-->
 
     <login-config>
         <auth-method>FORM</auth-method>
